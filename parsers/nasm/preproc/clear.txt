@@ -1,0 +1,6 @@
+(100001,	1,	r'\n',	eol,	<stdin>:1:38)
+(000001,	3,	aaa,	identifier,	<stdin>:3:1 <Spelling=<stdin>:2:11>)
+(100000,	1,	r'\n',	eol,	<stdin>:3:2)
+(000001,	1,	A,	identifier,	<stdin>:5:1)
+(100000,	1,	r'\n',	eol,	<stdin>:5:2)
+(100000,	0,	r'',	eof,	<stdin>:5:2)

@@ -1,0 +1,7 @@
+(100001,	1,	r'\n',	eol,	<stdin>:1:38)
+(100001,	1,	r'\n',	eol,	<stdin>:5:1)
+(100001,	1,	r'\n',	eol,	<stdin>:9:1)
+(000001,	3,	xxx,	identifier,	<stdin>:11:1)
+(100000,	1,	r'\n',	eol,	<stdin>:11:4)
+(100001,	1,	r'\n',	eol,	<stdin>:13:1)
+(100000,	0,	r'',	eof,	<stdin>:13:1)

@@ -1,0 +1,7 @@
+(100001,	1,	r'\n',	eol,	<stdin>:1:38)
+(100001,	1,	r'\n',	eol,	<stdin>:7:1)
+(010001,	1,	'3',	numeric_constant,	<stdin>:9:1 <Spelling=<stdin>:4:1>)
+(000000,	1,	r',',	comma,	<stdin>:9:1 <Spelling=<stdin>:4:2>)
+(010000,	1,	'4',	numeric_constant,	<stdin>:9:1 <Spelling=<stdin>:4:3>)
+(100000,	1,	r'\n',	eol,	<stdin>:9:1 <Spelling=<stdin>:4:4>)
+(100000,	0,	r'',	eof,	<stdin>:9:10)

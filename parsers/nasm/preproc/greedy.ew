@@ -1,0 +1,15 @@
+<stdin>:7:1: warning: macro 'greedy' exists, but not taking 0 parameters
+<stdin>:22:8: warning: redefining part of greedy multi-line macro 'greedy'
+<stdin>:3:8: note: previous definition is here
+<stdin>:30:8: warning: redefining part of greedy multi-line macro 'greedy'
+<stdin>:3:8: note: previous definition is here
+<stdin>:38:8: warning: redefining multi-line macro 'greedy'
+<stdin>:3:8: note: previous definition is here
+<stdin>:46:8: warning: redefining part of greedy multi-line macro 'greedy'
+<stdin>:38:8: note: previous definition is here
+<stdin>:54:8: warning: redefining part of greedy multi-line macro 'greedy'
+<stdin>:38:8: note: previous definition is here
+<stdin>:63:8: warning: redefining multi-line macro 'greedy'
+<stdin>:38:8: note: previous definition is here
+<stdin>:71:8: warning: redefining part of greedy multi-line macro 'greedy'
+<stdin>:63:8: note: previous definition is here

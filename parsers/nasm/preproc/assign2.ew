@@ -1,0 +1,3 @@
+<stdin>:11:9: warning: ignored %assign X due to existing %define X(...)
+<stdin>:18:9: warning: ignored %define X(...) due to existing %assign X
+<stdin>:27:12: error: expected expression

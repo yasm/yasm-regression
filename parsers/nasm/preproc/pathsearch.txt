@@ -1,0 +1,6 @@
+(100001,	1,	r'\n',	eol,	<stdin>:1:78)
+(010001,	52,	''../../regression/parsers/nasm/preproc/incinner.inc'',	string_literal,	<stdin>:3:1 <Spelling=<scratch space>:18:1>)
+(100000,	1,	r'\n',	eol,	<stdin>:3:4)
+(010001,	10,	''TODO.txt'',	string_literal,	<stdin>:5:1 <Spelling=<scratch space>:18:1>)
+(100000,	1,	r'\n',	eol,	<stdin>:5:4)
+(100000,	0,	r'',	eof,	<stdin>:5:4)

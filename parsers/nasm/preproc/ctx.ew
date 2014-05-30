@@ -1,0 +1,5 @@
+<stdin>:2:2: error: temporary error context stack is empty
+<stdin>:9:6: error: '%pop' in wrong context: 'bar', expected 'foo'
+<stdin>:8:2: note: to match this '%push'
+<stdin>:13:6: error: '%pop' in wrong context: 'bar', expected ''
+<stdin>:12:2: note: to match this '%push'

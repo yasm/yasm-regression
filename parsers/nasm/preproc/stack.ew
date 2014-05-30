@@ -1,0 +1,2 @@
+<stdin>:19:8: error: context stack is empty
+<stdin>:22:8: error: '%$localsize' not %assigned

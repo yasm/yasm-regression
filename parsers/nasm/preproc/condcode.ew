@@ -1,0 +1,24 @@
+<stdin>:3:3: warning: not in a macro call
+<stdin>:4:3: warning: not in a macro call
+<stdin>:27:1: error: macro parameter is not a condition code
+<stdin>:24:2: note: expanded from macro 'zero'
+<stdin>:27:1: error: macro parameter is not a condition code
+<stdin>:25:2: note: expanded from macro 'zero'
+<stdin>:35:7: error: condition code is not invertible
+<stdin>:30:2: note: expanded from macro 'basic'
+<stdin>:38:7: error: macro parameter is not a condition code
+<stdin>:30:2: note: expanded from macro 'basic'
+<stdin>:38:7: error: macro parameter is not a condition code
+<stdin>:31:2: note: expanded from macro 'basic'
+<stdin>:39:8: error: macro parameter is not a condition code
+<stdin>:30:2: note: expanded from macro 'basic'
+<stdin>:39:8: error: macro parameter is not a condition code
+<stdin>:31:2: note: expanded from macro 'basic'
+<stdin>:49:7: error: macro parameter is not a condition code
+<stdin>:43:2: note: expanded from macro 'blank'
+<stdin>:49:7: error: macro parameter is not a condition code
+<stdin>:44:2: note: expanded from macro 'blank'
+<stdin>:49:8: error: macro parameter is not a condition code
+<stdin>:45:2: note: expanded from macro 'blank'
+<stdin>:49:8: error: macro parameter is not a condition code
+<stdin>:46:2: note: expanded from macro 'blank'

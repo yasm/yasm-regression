@@ -1,0 +1,4 @@
+<stdin>:18:1: error: context stack is empty
+<stdin>:16:11: note: expanded from macro 'X'
+<stdin>:33:1: error: context stack is only 1 level deep
+<stdin>:36:1: error: context stack is empty

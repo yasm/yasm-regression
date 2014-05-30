@@ -1,0 +1,18 @@
+<stdin>:2:6: error: expected '}'
+<stdin>:2:1: note: to match this '%{'
+<stdin>:3:5: warning: unrecognized preprocessor directive 'xx'
+<stdin>:4:5: warning: unrecognized preprocessor directive 'xx'
+<stdin>:5:5: error: expected '}'
+<stdin>:5:3: note: to match this '%{'
+<stdin>:5:5: error: expected '}'
+<stdin>:5:1: note: to match this '%{'
+<stdin>:6:1: warning: unrecognized preprocessor directive '%'
+<stdin>:7:1: warning: unrecognized preprocessor directive ''
+<stdin>:8:1: warning: unrecognized preprocessor directive '{'
+<stdin>:9:4: warning: not in a macro call
+<stdin>:10:5: warning: not in a macro call
+<stdin>:23:5: warning: unrecognized preprocessor directive 'yy'
+<stdin>:20:12: note: expanded from macro 'xx'
+<stdin>:25:3: error: expected ']'
+<stdin>:25:1: note: to match this '%['
+<stdin>:32:2: warning: unrecognized preprocessor directive 'def'

@@ -1,0 +1,20 @@
+<stdin>:14:9: warning: ignored %define X(...) due to existing %assign X
+<stdin>:24:1: warning: macro 'x' exists, but not taking 3 parameters
+<stdin>:27:57: error: temporary error macro call expects terminating ')'
+<stdin>:32:3: error: temporary error unterminated {
+<stdin>:34:1: warning: disabled expansion of recursive macro 'y'
+<stdin>:33:16: note: expanded from macro 'y'
+<stdin>:35:1: warning: disabled expansion of recursive macro 'y'
+<stdin>:33:16: note: expanded from macro 'y'
+<stdin>:46:11: error: expected a parameter identifier
+<stdin>:50:11: error: expected a parameter identifier
+<stdin>:54:11: error: expected a parameter identifier
+<stdin>:55:13: error: expected a parameter identifier
+<stdin>:56:13: error: expected a parameter identifier
+<stdin>:60:1: warning: macro 'q' exists, but not taking 3 parameters
+<stdin>:64:1: warning: macro 's' exists, but not taking 3 parameters
+<stdin>:72:1: warning: macro 'r' exists, but not taking 1 parameters
+<stdin>:73:3: warning: macro 'r' exists, but not taking 1 parameters
+<stdin>:74:63: error: temporary error macro call expects terminating ')'
+<stdin>:75:3: warning: macro 'r' exists, but not taking 1 parameters
+<stdin>:75:1: warning: macro 'r' exists, but not taking 1 parameters

@@ -1,0 +1,4 @@
+(100001,	1,	r'\n',	eol,	<stdin>:1:64)
+(000001,	3,	aaa,	identifier,	<stdin>:10:1)
+(100000,	1,	r'\n',	eol,	<stdin>:10:4)
+(100000,	0,	r'',	eof,	<stdin>:13:4)

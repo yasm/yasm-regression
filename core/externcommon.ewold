@@ -1,0 +1,2 @@
+-:3: warning: `foo' both defined and declared extern
+-:5: error: duplicate definition of `foo'; first defined on line 4

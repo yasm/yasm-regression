@@ -1,0 +1,6 @@
+In file included from <stdin>:2:
+../../regression/parsers/nasm/preproc/ifinc0.inc:2:1: error: if without endif
+../../regression/parsers/nasm/preproc/ifinc0.inc:1:2: note: to match this '%if'
+In file included from <stdin>:3:
+../../regression/parsers/nasm/preproc/ifinc1.inc:2:1: error: if without endif
+../../regression/parsers/nasm/preproc/ifinc1.inc:1:2: note: to match this '%if'

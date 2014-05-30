@@ -1,0 +1,4 @@
+<stdin>:3:2: warning: a b c
+<stdin>:4:2: warning: what's this about
+<stdin>:5:2: error: test message
+<stdin>:6:2: fatal error: blah

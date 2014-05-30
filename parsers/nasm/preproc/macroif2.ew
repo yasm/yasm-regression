@@ -1,0 +1,4 @@
+<stdin>:10:1: warning: ending macro expansion within %if
+<stdin>:4:2: note: expanded from macro 'start'
+<stdin>:10:1: note: to match this '%if'
+<stdin>:3:2: note: expanded from macro 'start'

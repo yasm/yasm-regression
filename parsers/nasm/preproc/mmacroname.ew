@@ -1,0 +1,12 @@
+<stdin>:7:9: warning: redefining multi-line macro 'foo'
+<stdin>:2:9: note: previous definition is here
+<stdin>:22:9: warning: redefining multi-line macro 'foo'
+<stdin>:7:9: note: previous definition is here
+<stdin>:27:9: warning: redefining multi-line macro 'foo'
+<stdin>:22:9: note: previous definition is here
+<stdin>:32:9: warning: redefining multi-line macro 'foo'
+<stdin>:27:9: note: previous definition is here
+<stdin>:37:9: warning: redefining multi-line macro 'foo'
+<stdin>:32:9: note: previous definition is here
+<stdin>:42:9: warning: redefining multi-line macro 'foo'
+<stdin>:37:9: note: previous definition is here

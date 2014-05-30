@@ -1,0 +1,1 @@
+<stdin>:15:9: warning: ignored %define X(...) due to existing %assign X

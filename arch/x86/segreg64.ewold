@@ -1,0 +1,9 @@
+-:3: warning: `es' segment register ignored in 64-bit mode
+-:4: warning: `ds' segment register ignored in 64-bit mode
+-:5: warning: `ss' segment register ignored in 64-bit mode
+-:8: warning: `es' segment register ignored in 64-bit mode
+-:9: warning: `ds' segment register ignored in 64-bit mode
+-:10: warning: `ss' segment register ignored in 64-bit mode
+-:13: warning: `es' segment register ignored in 64-bit mode
+-:14: warning: `ds' segment register ignored in 64-bit mode
+-:15: warning: `ss' segment register ignored in 64-bit mode

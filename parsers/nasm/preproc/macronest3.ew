@@ -1,0 +1,10 @@
+<stdin>:51:1: error: undefined symbol 'sizeofm7' in preprocessor
+<stdin>:47:5: note: expanded from macro 'SSD'
+<stdin>:38:13: note: expanded from macro 'pxor'
+<stdin>:4:9: note: expanded from macro 'RUN_AVX_INSTR'
+<scratch space>:19:1: note: expanded from macro 'sizeof'
+<stdin>:51:1: error: expected expression
+<stdin>:47:5: note: expanded from macro 'SSD'
+<stdin>:38:13: note: expanded from macro 'pxor'
+<stdin>:4:9: note: expanded from macro 'RUN_AVX_INSTR'
+<scratch space>:19:1: note: expanded from macro 'sizeof'

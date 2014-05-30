@@ -1,0 +1,6 @@
+<stdin>:25:4: error: macro parameter is not a condition code
+<stdin>:23:4: note: expanded from macro 'dg'
+<stdin>:25:6: error: macro parameter is not a condition code
+<stdin>:23:8: note: expanded from macro 'dg'
+<stdin>:28:1: warning: not in a macro call
+<stdin>:29:1: warning: not in a macro call

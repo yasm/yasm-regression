@@ -1,0 +1,6 @@
+-:3: warning: `pause' is an instruction in CPU P4
+-:5: error: requires CPU 186
+-:8: warning: `fninit' is an instruction in CPU FPU
+-:16: error: requires CPU 186
+-:17: warning: `movsd' is an instruction in CPU 386
+-:18: error: requires CPU 186

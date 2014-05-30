@@ -1,0 +1,2 @@
+<stdin>:13:1: warning: disabled expansion of recursive macro 'a'
+<stdin>:12:12: note: expanded from macro 'a'

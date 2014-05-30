@@ -1,0 +1,4 @@
+<stdin>:18:5: warning: macro 'bar' exists, but not taking 0 parameters
+<stdin>:4:1: note: expanded from macro 'foo'
+<stdin>:19:10: warning: macro 'foo' exists, but not taking 0 parameters
+<stdin>:12:1: note: expanded from macro 'bar'
