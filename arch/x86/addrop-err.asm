@@ -1,0 +1,5 @@
+; [fail]
+[BITS 32]
+a16 idiv byte [dword 0]
+[BITS 16]
+a32 idiv byte [word 0]
