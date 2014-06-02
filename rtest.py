@@ -58,6 +58,7 @@ ygasexe = None
 nextgen = False
 logfile_fn = ""
 logfile = None
+quiet = 0
 verbose = False
 outdir = None
 
@@ -470,7 +471,7 @@ def run_all(bpath):
             result = test.run()
             results["TOTAL"] += 1
             results[result] += 1
-            if result != "SKIP":
+            if result != "SKIP" and (quiet < 1 or result in ("FAIL", "XPASS", "ERROR")):
                 lprint(result, color=result_color[result], end="")
                 lprint(": %s" % name)
         lprint_log("[----------] %d tests from %s"
@@ -480,13 +481,15 @@ def run_all(bpath):
     lprint_log("[==========] %d tests from %d directories ran. (%d ms total)"
             % (results["TOTAL"], ndirs, int((end-start)*1000)))
 
-    lprint("Summary (details in %s):" % logfile_fn)
+    if quiet < 1 or results["FAIL"] > 0 or results["XPASS"] > 0 or results["ERROR"] > 0:
+        lprint("Summary (details in %s):" % logfile_fn)
     for result in ["TOTAL", "PASS", "SKIP", "XFAIL", "FAIL", "XPASS", "ERROR"]:
         if results[result] > 0:
             color = result_color[result]
         else:
             color = "std"
-        lprint(" %s: %d" % (result, results[result]), color=color)
+        if quiet < 1 or (result in ("FAIL", "XPASS", "ERROR") and results[result] > 0):
+            lprint(" %s: %d" % (result, results[result]), color=color)
         # Logfile only since we printed to stdout
         lprint("[ %s ] %d tests."
                 % (result.center(8), results[result]),
@@ -516,6 +519,7 @@ if __name__ == "__main__":
             help="color code test output")
     parser.add_option("--log-file", dest="log_file", default="yasm-rtest.log",
             help="detailed log output file", metavar="FILE")
+    parser.add_option("-q", "--quiet", action="count", help="quiet output")
     parser.add_option("-v", "--verbose", action="store_true", dest="verbose",
             help="output details to stdout (as well as log file)")
 
@@ -531,10 +535,9 @@ if __name__ == "__main__":
 
     if options.color_tests:
         colors = enabled_colors
-    if options.nextgen:
-        nextgen = True
-    if options.verbose:
-        verbose = True
+    quiet = options.quiet
+    nextgen = options.nextgen
+    verbose = options.verbose
 
     outdir = options.outdir
     yasmexe = options.yasmexe
