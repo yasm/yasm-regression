@@ -1,0 +1,10 @@
+-:6: warning: `pushfq' is an instruction in 64-bit mode
+-:10: warning: `popfq' is an instruction in 64-bit mode
+-:16: warning: `pushfq' is an instruction in 64-bit mode
+-:16: error: redefinition of `pushfq'
+-:6: error: `pushfq' previously defined here
+-:20: warning: `popfq' is an instruction in 64-bit mode
+-:20: error: redefinition of `popfq'
+-:10: error: `popfq' previously defined here
+-:25: error: `pushfd' invalid in 64-bit mode
+-:29: error: `popfd' invalid in 64-bit mode

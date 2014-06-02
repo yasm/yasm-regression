@@ -1,0 +1,2 @@
+<stdin>:13:10: warning: value does not fit in signed 32 bit field [-Wsigned-overflow]
+<stdin>:19:10: warning: value does not fit in signed 32 bit field [-Wsigned-overflow]

@@ -1,0 +1,6 @@
+<stdin>:10:6: warning: value does not fit in signed 8 bit field [-Wsigned-overflow]
+<stdin>:13:6: warning: value does not fit in signed 8 bit field [-Wsigned-overflow]
+<stdin>:26:6: warning: value does not fit in signed 8 bit field [-Wsigned-overflow]
+<stdin>:29:6: warning: value does not fit in signed 8 bit field [-Wsigned-overflow]
+<stdin>:42:6: warning: value does not fit in signed 8 bit field [-Wsigned-overflow]
+<stdin>:45:6: warning: value does not fit in signed 8 bit field [-Wsigned-overflow]
