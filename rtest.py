@@ -260,18 +260,34 @@ class Test(object):
         if not golden:
             for lno, l in enumerate(self.inputlines):
                 comment = l.partition(self.commentsep)[2].strip()
-                if not comment.startswith('out:'):
-                    continue
-                b = comment[4:].split()
-                for x in b:
-                    if len(x) == 2:
-                        golden.append(int(x, 16))
-                    elif len(x) == 3:
-                        golden.append(int(x, 8))
+                if comment.startswith('out:'):
+                    # raw values; 2-char are treated as hex, 3-char as octal
+                    b = comment[4:].split()
+                    for x in b:
+                        if len(x) == 2:
+                            golden.append(int(x, 16))
+                        elif len(x) == 3:
+                            golden.append(int(x, 8))
+                        else:
+                            break
+                    for i in range(len(b)):
+                        fromfile.append((lno+1, i))
+                elif comment.startswith('rep-out:'):
+                    # repeated raw values: first number is rep count, may be
+                    # decimal or hex (indicated by leading 0x).  Following
+                    # numbers are repeated values and must be hex.
+                    vals = comment[8:].split()
+                    length = vals.pop(0)
+                    if length.startswith("0x"):
+                        length = int(length, 16)
                     else:
-                        break
-                for i in range(len(b)):
-                    fromfile.append((lno+1, i))
+                        length = int(length)
+                    vals = [int(x, 16) for x in vals]
+                    for j in range(length):
+                        golden.extend(vals)
+                        for i in range(len(vals)):
+                            fromfile.append((lno+1, i))
+
 
         goldenfn = self.basefn + ".gold"
 
