@@ -249,16 +249,20 @@ class Test(object):
         # If there's a .hex file, use it; otherwise scan the input file
         # for comments starting with "out:" followed by hex digits.
         golden = []
+        fromfile = [] # line numbers from "out:"
         if not nextgen:
             golden = self.read_ew(".hexold")
         if not golden:
             golden = self.read_ew(".hex")
         if not golden:
-            for l in self.inputlines:
+            for lno, l in enumerate(self.inputlines):
                 comment = l.partition(self.commentsep)[2].strip()
                 if not comment.startswith('out:'):
                     continue
-                golden.extend(comment[4:].split())
+                b = comment[4:].split()
+                golden.extend(b)
+                for i in range(len(b)):
+                    fromfile.append((lno+1, i))
         golden = [int(x, 16) for x in golden if x]
 
         goldenfn = self.basefn + ".gold"
@@ -276,8 +280,13 @@ class Test(object):
             match = False
         for i, (o, g) in enumerate(zip([ord(x) for x in result], golden)):
             if o != g:
-                lprint_log("%s:%d: mismatch: %s (expected %s)"
-                        % (self.outfn, i, hex(o), hex(g)))
+                if fromfile:
+                    ln = " per %s line %d byte %d" % \
+                            (self.name, fromfile[i][0], fromfile[i][1])
+                else:
+                    ln = ""
+                lprint_log("%s:%d: mismatch: %s (expected %s%s)"
+                        % (self.outfn, i, hex(o), hex(g), ln))
                 lprint_log("  (only the first mismatch is reported)")
                 match = False
                 break
