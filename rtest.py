@@ -252,19 +252,26 @@ class Test(object):
         golden = []
         fromfile = [] # line numbers from "out:"
         if not nextgen:
-            golden = self.read_ew(".hexold")
+            golden = self.read_hex(".hexold")
+            golden = [int(x, 16) for x in golden if x]
         if not golden:
-            golden = self.read_ew(".hex")
+            golden = self.read_hex(".hex")
+            golden = [int(x, 16) for x in golden if x]
         if not golden:
             for lno, l in enumerate(self.inputlines):
                 comment = l.partition(self.commentsep)[2].strip()
                 if not comment.startswith('out:'):
                     continue
                 b = comment[4:].split()
-                golden.extend(b)
+                for x in b:
+                    if len(x) == 2:
+                        golden.append(int(x, 16))
+                    elif len(x) == 3:
+                        golden.append(int(x, 8))
+                    else:
+                        break
                 for i in range(len(b)):
                     fromfile.append((lno+1, i))
-        golden = [int(x, 16) for x in golden if x]
 
         goldenfn = self.basefn + ".gold"
 
