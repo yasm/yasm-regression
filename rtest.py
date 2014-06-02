@@ -503,22 +503,21 @@ def run_all(bpath):
 
 if __name__ == "__main__":
     from optparse import OptionParser
-    parser = OptionParser(usage="--output-dir=DIR --yasm=PATH [options] <path to regression tree>")
+    parser = OptionParser(usage="rtest.py --output-dir=DIR --yasm=PATH [options] <path to regression tree>")
     parser.add_option("--output-dir", dest="outdir", default="results",
             help="path to output directory", metavar="DIR")
     parser.add_option("--yasm", dest="yasmexe",
             help="path to yasm executable", metavar="PATH")
     parser.add_option("--ygas", dest="ygasexe",
             help="path to ygas executable", metavar="PATH")
-    parser.add_option("--nextgen", dest="nextgen", default="no",
-            help="yasm-nextgen testing", choices=["yes", "no"])
-    parser.add_option("--color-tests", dest="color_tests", default="no",
-            help="color code test output", choices=["yes", "no"])
+    parser.add_option("--nextgen", action="store_true", dest="nextgen",
+            help="yasm-nextgen testing")
+    parser.add_option("--color-tests", action="store_true", dest="color_tests",
+            help="color code test output")
     parser.add_option("--log-file", dest="log_file", default="yasm-rtest.log",
             help="detailed log output file", metavar="FILE")
-    parser.add_option("-v", "--verbose", dest="verbose", default="no",
-            help="output details to stdout (as well as log file)",
-            choices=["yes", "no"])
+    parser.add_option("-v", "--verbose", action="store_true", dest="verbose",
+            help="output details to stdout (as well as log file)")
 
     (options, args) = parser.parse_args()
 
@@ -530,11 +529,11 @@ if __name__ == "__main__":
         parser.error("missing mandatory options %s" %
                 " ".join(missing_opts))
 
-    if options.color_tests == "yes":
+    if options.color_tests:
         colors = enabled_colors
-    if options.nextgen == "yes":
+    if options.nextgen:
         nextgen = True
-    if options.verbose == "yes":
+    if options.verbose:
         verbose = True
 
     outdir = options.outdir
