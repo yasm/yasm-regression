@@ -1,0 +1,4 @@
+<stdin>:2:5: error: cannot override register size
+<stdin>:4:5: error: cannot override register size
+<stdin>:5:5: error: cannot override register size
+<stdin>:6:5: error: cannot override register size
