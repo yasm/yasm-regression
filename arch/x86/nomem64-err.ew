@@ -1,0 +1,21 @@
+<stdin>:3:1: error: invalid combination of opcode and operands
+<stdin>:5:1: error: instruction not valid in 64-bit mode
+<stdin>:5:7: warning: label alone on a line without a colon might be in error [-Worphan-labels]
+<stdin>:6:1: error: instruction not valid in 64-bit mode
+<stdin>:6:5: warning: label alone on a line without a colon might be in error [-Worphan-labels]
+<stdin>:7:1: error: instruction not valid in 64-bit mode
+<stdin>:7:5: error: instruction expected after label
+<stdin>:8:1: error: instruction not valid in 64-bit mode
+<stdin>:8:4: warning: label alone on a line without a colon might be in error [-Worphan-labels]
+<stdin>:9:1: error: instruction not valid in 64-bit mode
+<stdin>:9:4: warning: label alone on a line without a colon might be in error [-Worphan-labels]
+<stdin>:10:1: error: instruction not valid in 64-bit mode
+<stdin>:10:4: warning: label alone on a line without a colon might be in error [-Worphan-labels]
+<stdin>:11:1: error: instruction not valid in 64-bit mode
+<stdin>:11:5: warning: label alone on a line without a colon might be in error [-Worphan-labels]
+<stdin>:12:1: error: instruction not valid in 64-bit mode
+<stdin>:12:5: warning: label alone on a line without a colon might be in error [-Worphan-labels]
+<stdin>:17:1: warning: identifier is an instruction in 64-bit mode
+<stdin>:17:5: warning: label alone on a line without a colon might be in error [-Worphan-labels]
+<stdin>:18:1: warning: identifier is an instruction in 64-bit mode
+<stdin>:18:7: warning: label alone on a line without a colon might be in error [-Worphan-labels]

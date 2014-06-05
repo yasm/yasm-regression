@@ -1,0 +1,1 @@
+<stdin>:7:9: warning: value does not fit in signed 32 bit field [-Wsigned-overflow]

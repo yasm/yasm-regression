@@ -1,0 +1,6 @@
+<stdin>:2:9: warning: value does not fit in 16 bit field
+<stdin>:3:9: warning: value does not fit in 16 bit field
+<stdin>:4:10: warning: value does not fit in 32 bit field
+<stdin>:6:4: warning: value does not fit in 32 bit field
+<stdin>:8:4: warning: value does not fit in 16 bit field
+<stdin>:11:12: warning: value does not fit in 16 bit field

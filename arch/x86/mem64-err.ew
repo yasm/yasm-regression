@@ -1,0 +1,5 @@
+<stdin>:3:9: error: 16-bit addresses not supported in 64-bit mode
+<stdin>:5:9: error: 16-bit addresses not supported in 64-bit mode
+<stdin>:6:10: error: invalid effective address
+<stdin>:7:10: error: invalid effective address
+<stdin>:8:9: error: cannot use A/B/C/DH with instruction needing REX

@@ -1,0 +1,14 @@
+-:3: warning: `es' segment register ignored in 64-bit mode
+-:5: error: `pushaw' invalid in 64-bit mode
+-:6: error: `popa' invalid in 64-bit mode
+-:7: error: `lds' invalid in 64-bit mode
+-:8: error: `aas' invalid in 64-bit mode
+-:9: error: `das' invalid in 64-bit mode
+-:10: error: `aad' invalid in 64-bit mode
+-:11: error: `into' invalid in 64-bit mode
+-:12: error: `salc' invalid in 64-bit mode
+-:14: warning: `xmm9' is a register in 64-bit mode
+-:15: warning: `rax' is a register in 64-bit mode
+-:16: warning: `rdx' is a register in 64-bit mode
+-:17: warning: `cdqe' is an instruction in 64-bit mode
+-:18: warning: `swapgs' is an instruction in 64-bit mode
