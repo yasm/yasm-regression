@@ -392,8 +392,13 @@ class Test(object):
             yasmargs = shlex.split("ygas "+ygasoverride)
             self.parser = "gas"
 
-        # Only yasm-nextgen supports some tests
-        if not nextgen:
+        # yasm / yasm-nextgen specific tests
+        if nextgen:
+            if self.get_option("!nextgen") is not None:
+                skip = True
+        else:
+            # preproc-tokens option not supported by yasm
+            # currently, yasm has many broken gas tests so skip them all
             if (self.get_option("nextgen") is not None or
                     "--dump-preproc-tokens" in yasmargs or
                     self.parser == "gas"):
