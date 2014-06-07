@@ -1,0 +1,2 @@
+<stdin>:5:4: warning: multiple segment overrides, using leftmost
+<stdin>:5:1: warning: multiple segment overrides, using leftmost

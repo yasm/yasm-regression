@@ -1,0 +1,2 @@
+<stdin>:3:12: error: cannot use A/B/C/DH with instruction needing REX
+<stdin>:4:12: error: cannot use A/B/C/DH with instruction needing REX

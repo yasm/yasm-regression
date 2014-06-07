@@ -1,0 +1,4 @@
+<stdin>:3:5: error: invalid operand size
+<stdin>:4:5: error: invalid operand size
+<stdin>:5:12: error: invalid operand size
+<stdin>:6:12: error: invalid operand size

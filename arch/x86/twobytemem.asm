@@ -1,0 +1,15 @@
+lgdt [0]		; out: 0f 01 16 00 00
+lidt [0x100]		; out: 0f 01 1e 00 01
+sgdt [0x1000]		; out: 0f 01 06 00 10
+sidt [0x2004]		; out: 0f 01 0e 04 20
+fstenv [0x4]		; out: 9b d9 36 04 00
+fsave [0x800]		; out: 9b dd 36 00 08
+invlpg [0xffff0000]	; out: 0f 01 3e 00 00
+fxsave [0x200]		; out: 0f ae 06 00 02
+fxrstor [0x400]		; out: 0f ae 0e 00 04
+prefetchnta [0x4]	; out: 0f 18 06 04 00
+prefetcht0 [0x8]	; out: 0f 18 0e 08 00
+prefetcht1 [0xC]	; out: 0f 18 16 0c 00
+prefetcht2 [0x10]	; out: 0f 18 1e 10 00
+prefetch [0x50]		; out: 0f 0d 06 50 00
+prefetchw [0x60]	; out: 0f 0d 0e 60 00
