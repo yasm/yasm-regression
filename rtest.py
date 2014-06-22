@@ -406,15 +406,15 @@ class Test(object):
 
         # Abort if test skipped
         if skip:
-            lprint_log("[   SKIP   ] %s" % self.name)
-            return "SKIP"
+            lprint_log("[%s] %s" % ("SKIP".center(10), self.name))
 
         # Set comment separator based on parser
         self.commentsep = (self.parser == "gas") and "#" or ";"
 
         # Notify start of test
-        lprint_log("[   RUN    ] %s (%s%s)%s" %
-               (self.name, yasmargs[0] == "ygas" and "ygas " or "",
+        lprint_log("[%s] %s (%s%s)%s" %
+               ("RUN".center(10), self.name,
+                yasmargs[0] == "ygas" and "ygas " or "",
                 " ".join(yasmargs[1:]), expectfail and "{fail}" or ""))
 
         # Specify the output filename as we pipe the input.
@@ -440,8 +440,8 @@ class Test(object):
         elif proc.returncode < 0:
             lprint_log(" CRASHED: received signal %d" % (-proc.returncode))
             self.save_ew(stderrdata)
-            lprint_log("[  ERROR   ] %s (%d ms)"
-                    % (self.name, int((end-start)*1000)))
+            lprint_log("[%s] %s (%d ms)"
+                    % ("ERROR".center(10), self.name, int((end-start)*1000)))
             return "ERROR"
         elif expectfail:
             ok = True
@@ -473,8 +473,8 @@ class Test(object):
         else:
             if ok:  rv = "PASS"
             else:   rv = "FAIL"
-        lprint_log("[ %s ] %s (%d ms)"
-                % (rv.center(8), self.name, int((end-start)*1000)))
+        lprint_log("[%s] %s (%d ms)"
+                % (rv.center(10), self.name, int((end-start)*1000)))
         return rv
 
 def run_all(bpath):
@@ -519,8 +519,8 @@ def run_all(bpath):
         if quiet < 1 or (result in ("FAIL", "XPASS", "ERROR") and results[result] > 0):
             lprint(" %s: %d" % (result, results[result]), color=color)
         # Logfile only since we printed to stdout
-        lprint("[ %s ] %d tests."
-                % (result.center(8), results[result]),
+        lprint("[%s] %d tests."
+                % (result.center(10), results[result]),
                file=logfile)
 
     # Re-list failed tests in log file
