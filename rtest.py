@@ -29,6 +29,10 @@ import re
 import subprocess
 import sys
 import time
+try:
+    from configparser import RawConfigParser
+except ImportError:
+    from ConfigParser import RawConfigParser
 
 enabled_colors = dict(
         red="\033[0;31m",
@@ -53,9 +57,17 @@ def lprint(*args, **kwargs):
         file.write(colors["std"])
     file.write(end)
 
+class DummyModule:
+    def transform_ew(line):
+        return line
+    def check_run(parser, args):
+        return None
+
+config_fn = None
+config = RawConfigParser()
+custom_module = DummyModule()
 yasmexe = None
 ygasexe = None
-nextgen = False
 logfile_fn = ""
 logfile = None
 quiet = 0
@@ -67,32 +79,17 @@ def lprint_log(*args, **kwargs):
     if verbose:
         lprint(*args, file=sys.stdout, **kwargs)
 
-nextgen_ew_line_re = re.compile(r"^(?P<file>[^:]+):(?P<line>[^:]+):(?P<col>[^:]+):((?P<range>[{][^}]+[}]):)? (?P<err>[^[]+)(?P<warnopt>\[.*)?$")
+def get_config(section, option, default):
+    if config.has_option(section, option):
+        return config.get(section, option)
+    else:
+        return default
 
-def transform_old_ew(line):
-    """Transform nextgen ew file into old style."""
-    # column is dropped
-    m = nextgen_ew_line_re.match(line)
-    filename = m.group("file")
-    lineno = m.group("line")
-    err = m.group("err").rstrip()
-
-    # <stdin> is -
-    filename = filename.replace("<stdin>", "-")
-
-    # replace first single quote (') with backtick (`)
-    if "'" in err:
-        parts = err.split("'")
-        newparts = []
-        for i, part in enumerate(parts):
-            newparts.append(part)
-            if i % 2 == 0:
-                newparts.append("`")
-            else:
-                newparts.append("'")
-        err = "".join(newparts[:-1])
-
-    return "%s:%s: %s" % (filename, lineno, err)
+def get_config_boolean(section, option, default):
+    if config.has_option(section, option):
+        return config.getboolean(section, option)
+    else:
+        return default
 
 def path_splitall(path):
     """Split all components of a path into a list."""
@@ -135,28 +132,25 @@ class Test(object):
         finally:
             f.close()
 
-    def read_ew(self, ext):
-        """Get error/warnings from file if possible."""
+    def compare_ew(self, stderrdata):
+        """Check error/warnings output."""
+        # Read config file for extension override
+        ext = get_config(self.name, "ERRWARN", "ew")
+
+        # Read file
         golden = []
         try:
-            f = open(os.path.splitext(self.fullpath)[0] + ext)
+            f = open(os.path.splitext(self.fullpath)[0] + "." + ext)
             try:
                 golden = [l.rstrip() for l in f.readlines()]
             finally:
                 f.close()
         except IOError:
             pass
-        return golden
 
-    def compare_ew(self, stderrdata):
-        """Check error/warnings output."""
-        # If non-nextgen, look for an .ewold file first, and transform .ew file
-        if not nextgen:
-            golden = self.read_ew(".ewold")
-            if not golden:
-                golden = [transform_old_ew(l) for l in self.read_ew(".ew")]
-        else:
-            golden = self.read_ew(".ew")
+        # Transform if default extension
+        if ext == "ew":
+            golden = [custom_module.transform_ew(l) for l in golden]
 
         result = [l for l in enumerate(stderrdata.splitlines())
                   if not l[1].startswith(" ")]
@@ -233,30 +227,23 @@ class Test(object):
 
         return match
 
-    def read_hex(self, ext):
+    def compare_out(self):
+        """Check output file."""
+        # If there's a .hex file, use it; otherwise scan the input file
+        # for comments starting with "out:" followed by hex digits.
+        fromfile = [] # line numbers from "out:"
+        ext = get_config(self.name, "OUTPUT", "hex")
         golden = []
         try:
-            f = open(os.path.splitext(self.fullpath)[0] + ext)
+            f = open(os.path.splitext(self.fullpath)[0] + "." + ext)
             try:
                 golden = [l.strip() for l in f.readlines()]
             finally:
                 f.close()
         except IOError:
             pass
-        return golden
+        golden = [int(x, 16) for x in golden if x]
 
-    def compare_out(self):
-        """Check output file."""
-        # If there's a .hex file, use it; otherwise scan the input file
-        # for comments starting with "out:" followed by hex digits.
-        golden = []
-        fromfile = [] # line numbers from "out:"
-        if not nextgen:
-            golden = self.read_hex(".hexold")
-            golden = [int(x, 16) for x in golden if x]
-        if not golden:
-            golden = self.read_hex(".hex")
-            golden = [int(x, 16) for x in golden if x]
         if not golden:
             for lno, l in enumerate(self.inputlines):
                 comment = l.partition(self.commentsep)[2].strip()
@@ -392,21 +379,13 @@ class Test(object):
             yasmargs = shlex.split("ygas "+ygasoverride)
             self.parser = "gas"
 
-        # yasm / yasm-nextgen specific tests
-        if nextgen:
-            if self.get_option("!nextgen") is not None:
-                skip = True
-        else:
-            # preproc-tokens option not supported by yasm
-            # currently, yasm has many broken gas tests so skip them all
-            if (self.get_option("nextgen") is not None or
-                    "--dump-preproc-tokens" in yasmargs or
-                    self.parser == "gas"):
-                skip = True
-
         # Abort if test skipped
-        if skip:
-            lprint_log("[%s] %s" % ("SKIP".center(10), self.name))
+        result = custom_module.check_run(self.parser, yasmargs)
+        if get_config_boolean(self.name, "BROKEN", False):
+            result = "SKIP"
+        if result is not None:
+            lprint_log("[%s] %s" % (result.center(10), self.name))
+            return result
 
         # Set comment separator based on parser
         self.commentsep = (self.parser == "gas") and "#" or ";"
@@ -483,7 +462,7 @@ def run_all(bpath):
     result_color = dict(TOTAL="std", PASS="grn", SKIP="blu", XFAIL="lgn",
             FAIL="red", XPASS="red", ERROR="red")
     failed = []
-    lprint_log("[==========] Running tests.")
+    lprint_log("[==========] Running tests (%s)." % config_fn)
     start = time.time()
     for root, dirs, files in sorted(os.walk(bpath), key=lambda x: x[0]):
         somefiles = sorted([f for f in files if f.endswith(".asm") or f.endswith(".s")])
@@ -534,15 +513,15 @@ def run_all(bpath):
 
 if __name__ == "__main__":
     from optparse import OptionParser
-    parser = OptionParser(usage="rtest.py --output-dir=DIR --yasm=PATH [options] <path to regression tree>")
+    parser = OptionParser(usage="rtest.py --config=FILE --yasm=PATH [options] <path to regression tree>")
     parser.add_option("--output-dir", dest="outdir", default="results",
             help="path to output directory", metavar="DIR")
     parser.add_option("--yasm", dest="yasmexe",
             help="path to yasm executable", metavar="PATH")
     parser.add_option("--ygas", dest="ygasexe",
             help="path to ygas executable", metavar="PATH")
-    parser.add_option("--nextgen", action="store_true", dest="nextgen",
-            help="yasm-nextgen testing")
+    parser.add_option("--config", dest="config",
+            help="configuration to use", metavar="FILE")
     parser.add_option("--color-tests", action="store_true", dest="color_tests",
             help="color code test output")
     parser.add_option("--log-file", dest="log_file", default="yasm-rtest.log",
@@ -556,15 +535,21 @@ if __name__ == "__main__":
     if len(args) != 1:
         parser.error("missing argument")
     missing_opts = []
+    if options.config is None: missing_opts.append("--config")
     if options.yasmexe is None: missing_opts.append("--yasm")
     if missing_opts:
         parser.error("missing mandatory options %s" %
                 " ".join(missing_opts))
 
+    config_fn = options.config
+    config.readfp(open(options.config))
+    module_name = get_config("GLOBAL", "CUSTOM_MODULE", None)
+    if module_name is not None:
+        custom_module = __import__(module_name)
+
     if options.color_tests:
         colors = enabled_colors
     quiet = options.quiet
-    nextgen = options.nextgen
     verbose = options.verbose
 
     outdir = options.outdir
