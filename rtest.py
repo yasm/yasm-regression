@@ -556,6 +556,11 @@ if __name__ == "__main__":
     yasmexe = options.yasmexe
     ygasexe = options.ygasexe
 
+    try:
+        os.mkdir(options.outdir)
+    except OSError:
+        pass
+
     logfile_fn = options.log_file
     logfile = open(logfile_fn, "wt")
     all_ok = run_all(args[0])
