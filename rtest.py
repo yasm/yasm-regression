@@ -488,14 +488,14 @@ def run_all(bpath):
     lprint_log("[==========] %d tests from %d directories ran. (%d ms total)"
             % (results["TOTAL"], ndirs, int((end-start)*1000)))
 
-    if quiet < 1 or results["FAIL"] > 0 or results["XPASS"] > 0 or results["ERROR"] > 0:
+    if quiet < 2 or results["FAIL"] > 0 or results["XPASS"] > 0 or results["ERROR"] > 0:
         lprint("Summary (details in %s):" % logfile_fn)
     for result in ["TOTAL", "PASS", "SKIP", "XFAIL", "FAIL", "XPASS", "ERROR"]:
         if results[result] > 0:
             color = result_color[result]
         else:
             color = "std"
-        if quiet < 1 or (result in ("FAIL", "XPASS", "ERROR") and results[result] > 0):
+        if quiet < 2 or (result in ("FAIL", "XPASS", "ERROR") and results[result] > 0):
             lprint(" %s: %d" % (result, results[result]), color=color)
         # Logfile only since we printed to stdout
         lprint("[%s] %d tests."
